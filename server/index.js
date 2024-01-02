@@ -2,15 +2,21 @@ import express from "express";
 import cors from "cors";
 import mongoose from "mongoose";
 import { PORT, DB_PATH } from "./config.js";
+import * as BookControllers from "./controllers/books.js";
 
 const app = express();
+
+app.use(express.json());
 
 app.use(cors());
 
 app.get("/", (req, res) => {
   res.setHeader("Cache-Control", "no-store");
-  return res.status(234).send("Hello World!");
+  return res.status(234).send("Welcome to the book-store project!");
 });
+
+app.post("/books", BookControllers.createBook);
+app.get("/books", BookControllers.getBooks);
 
 mongoose
   .connect(DB_PATH)
