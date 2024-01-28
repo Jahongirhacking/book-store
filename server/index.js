@@ -24,7 +24,7 @@ mongoose
     console.log("App is connected to the Database");
     app.listen(PORT, () => {
       try {
-        console.log(`Server is running on ${PORT}`);
+        console.log(`Server is running on http://localhost:${PORT}`);
       } catch (err) {
         console.error(err);
       }
