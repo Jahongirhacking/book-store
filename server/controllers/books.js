@@ -1,30 +1,28 @@
 import { Book } from "../models/bookModel.js";
 
-export const getBooks = async (req, res) => {
+export const createBook = async (req, res) => {
   try {
-    const books = await Book.find({});
-    res.status(200).send(books);
+    const { author, publishYear, title } = req.body;
+    if (!publishYear || !author || !title) {
+      throw new Error("not enough fields");
+    }
+    const newBook = { author, title, publishYear };
+    const book = await Book.create(newBook);
+    return res.status(201).json(book);
   } catch (err) {
-    res.status(400).send(err.message);
+    console.error(err);
+    res.status(400).send("Cannot create a book");
   }
 };
 
-export const createBook = async (req, res) => {
+export const getBooks = async (_, res) => {
   try {
-    if (!req.body.title || !req.body.author || !req.body.publishYear) {
-      return res.status(400).send("Send all required fields");
-    }
-
-    const newBook = {
-      title: req.body.title,
-      author: req.body.author,
-      publishYear: req.body.publishYear,
-    };
-
-    const book = await Book.create(newBook);
-    res.status(201).send(book);
+    const books = await Book.find({});
+    res.status(200).json({
+      count: books.length,
+      books,
+    });
   } catch (err) {
-    console.error(err);
-    res.status(500).send(err.message);
+    res.status(400).send("Cannot get a book");
   }
 };

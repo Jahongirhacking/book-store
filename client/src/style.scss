@@ -1,0 +1,56 @@
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  font-size: 12pt;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 30px 15px;
+  row-gap: 10px;
+
+  .form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 10px;
+    width: 95%;
+    max-width: 400px;
+
+    label {
+      display: flex;
+      column-gap: 10px;
+      width: 100%;
+
+      input {
+        flex: 1;
+        padding: 3px;
+      }
+    }
+    button {
+      width: 100%;
+      padding: 3px;
+    }
+  }
+
+  .card-container {
+    justify-content: center;
+    display: flex;
+    column-gap: 20px;
+    row-gap: 10px;
+    flex-wrap: wrap;
+    padding-top: 10px;
+
+    .card {
+      display: flex;
+      flex-direction: column;
+      width: 250px;
+      border: 1px solid black;
+      border-radius: 5px;
+      padding: 5px;
+    }
+  }
+}
