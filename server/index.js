@@ -17,6 +17,9 @@ app.get("/", (req, res) => {
 
 app.post("/books", BookControllers.createBook);
 app.get("/books", BookControllers.getBooks);
+app.get("/books/:id", BookControllers.getBook);
+app.put("/books/:id", BookControllers.updateBook);
+app.delete("/books/:id", BookControllers.deleteBook);
 
 mongoose
   .connect(DB_PATH)
